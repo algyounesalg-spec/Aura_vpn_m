@@ -13,14 +13,11 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          cache: gradle
-
+          
       - name: Extract Project
         run: |
           unzip "aura vpn m.zip"
-          # Assuming extraction creates 'my-app' directory
-          cd my-app
-
+          
       - name: Build APK
         run: |
           cd my-app
@@ -34,5 +31,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: aura-vpn-final
-          path: my-app/android/app/build/outputs/apk/debug/aura vpn m.apk
-
+          path: my-app/android/app/build/outputs/apk/debug/app-debug.apk
