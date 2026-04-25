@@ -14,16 +14,11 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           
-      - name: Extract Project
+      - name: Extract and Build
         run: |
           unzip "aura vpn m.zip"
-          # This command lists files to see the correct folder name
-          ls -R
-          
-      - name: Build APK
-        run: |
-          # Use wildcards to enter the correct directory automatically
-          cd "aura vpn m" || cd "my-app" || cd */
+          TARGET_DIR=$(find . -name "package.json" -printf '%h\n' | head -n 1)
+          cd "$TARGET_DIR"
           npm install
           npx cap sync android
           cd android
